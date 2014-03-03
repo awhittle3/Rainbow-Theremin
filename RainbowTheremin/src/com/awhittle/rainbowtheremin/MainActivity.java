@@ -52,16 +52,6 @@ public class MainActivity extends Activity {
 	        	Tone.playTone();
 	        }
 	        
-	        
-	        
-	        //Pause for a short amount of time
-			try {
-			    Thread.sleep(100);
-			}
-			catch(InterruptedException ex) {
-			    Thread.currentThread().interrupt();
-			}
-			
 	        return true;
 	    }
 

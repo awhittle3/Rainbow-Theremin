@@ -11,8 +11,8 @@ public class Tone {
     // and modified by Steve Pomeroy <steve@staticfree.info>.
 	// Modified further by awhittle3.
 	
-    private final static float duration = 0.05f; // seconds
-    private final static int sampleRate = 8000;
+    private final static float duration = 0.1f; // seconds
+    private final static int sampleRate = 40000;
     private final static int numSamples = (int) (duration * sampleRate);
     private final static double sample[] = new double[numSamples];
     private static double freqOfTone = 440; // hz
@@ -82,7 +82,7 @@ public class Tone {
     }
     
     public static void getTone(float x){
-    	freqOfTone = (double)(400 + 13000 * x);
+    	freqOfTone = (double)(200 + 1300 * x);
     }
 }
 
