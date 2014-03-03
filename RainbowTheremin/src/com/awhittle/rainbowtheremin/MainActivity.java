@@ -34,16 +34,21 @@ public class MainActivity extends Activity {
 	 @Override
 	    public boolean onTouchEvent(MotionEvent event) {
 	    	
+		 	//Get x and y location in pixels
 	        float x = event.getX();
 	        float y = event.getY();
 	        
+	        //Normalize x and y values
+	        float xNorm = x/mSize.x;
+	        float yNorm = y/mSize.y;
+	        
 	        if (mSize.x > mSize.y){
-	        	setColour(x/mSize.x);
-	        	Tone.getTone(x);
+	        	setColour(xNorm);
+	        	Tone.getTone(xNorm);
 	        	Tone.playTone();
 	        } else {
-	        	setColour(y/mSize.y);
-	        	Tone.getTone(y);
+	        	setColour(yNorm);
+	        	Tone.getTone(yNorm);
 	        	Tone.playTone();
 	        }
 	        
