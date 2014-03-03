@@ -1,7 +1,9 @@
 package com.awhittle.rainbowtheremin;
 
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.view.Display;
@@ -12,6 +14,9 @@ import android.view.View;
 public class MainActivity extends Activity {
 	
 	private View mView;
+	private AudioManager mAudioManager;
+	private final int maxVolume = 20;
+	private int volume;
 	private final int a = 255;
 	private int r = 0;
 	private int g = 0;
@@ -26,9 +31,12 @@ public class MainActivity extends Activity {
 		mView = this.findViewById(android.R.id.content);
 		mView.setBackgroundColor(Color.argb(a, r, g, b));
 		
-		Display display = getWindowManager().getDefaultDisplay();
+    	mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+    	mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, 0);
+    	
+		Display mDisplay = getWindowManager().getDefaultDisplay();
 		mSize = new Point();
-		display.getSize(mSize);
+		mDisplay.getSize(mSize);
 	}
 
 	 @Override
@@ -44,10 +52,12 @@ public class MainActivity extends Activity {
 	        
 	        if (mSize.x > mSize.y){
 	        	setColour(xNorm);
+	        	setVolume(yNorm);
 	        	Tone.getTone(xNorm);
 	        	Tone.playTone();
 	        } else {
 	        	setColour(yNorm);
+	        	setVolume(xNorm);
 	        	Tone.getTone(yNorm);
 	        	Tone.playTone();
 	        }
@@ -79,6 +89,11 @@ public class MainActivity extends Activity {
 		}
 
 		mView.setBackgroundColor(Color.argb(a, r, g, b));
+	}
+	
+	private void setVolume(float y) {
+		volume = (int) (maxVolume * (1-y));
+		mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, 0);
 	}
 	 
 	
