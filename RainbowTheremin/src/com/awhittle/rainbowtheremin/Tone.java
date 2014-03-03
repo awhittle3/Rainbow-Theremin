@@ -82,7 +82,7 @@ public class Tone {
     }
     
     public static void getTone(float x){
-    	freqOfTone = (double)(200 + 1300 * x);
+    	freqOfTone = (double)( -1300 * x + 1500);
     }
 }
 
