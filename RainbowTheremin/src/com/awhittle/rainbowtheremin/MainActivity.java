@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
 	
 	private View mView;
 	private AudioManager mAudioManager;
-	private final int maxVolume = 20;
+	private int maxVolume;
 	private int volume;
 	private final int a = 255;
 	private int r = 0;
@@ -28,12 +28,16 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		//Set up background with black
 		mView = this.findViewById(android.R.id.content);
 		mView.setBackgroundColor(Color.argb(a, r, g, b));
 		
+		//Initialize volume control
     	mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+    	maxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
     	mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, 0);
     	
+    	//Get screen size
 		Display mDisplay = getWindowManager().getDefaultDisplay();
 		mSize = new Point();
 		mDisplay.getSize(mSize);
@@ -50,6 +54,7 @@ public class MainActivity extends Activity {
 	        float xNorm = x/mSize.x;
 	        float yNorm = y/mSize.y;
 	        
+	        //Use longest side for pitch control
 	        if (mSize.x > mSize.y){
 	        	setColour(xNorm);
 	        	setVolume(yNorm);
