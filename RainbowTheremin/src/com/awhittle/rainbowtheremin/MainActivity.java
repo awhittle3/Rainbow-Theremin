@@ -70,6 +70,8 @@ public class MainActivity extends Activity {
 		//The following curves are rough fits of what rbg wavelength proportions make up the rainbow
 		if(x > 0.3f && x < 0.95f){
 			r = (int)(255*(11.899*x*x*x - 28.666*x*x + 20.161*x - 3.4639));
+		} else if (x < 0.1f){
+			r = (int)(-2550*x + 255);
 		} else {
 			r = 0;
 		}
