@@ -64,6 +64,21 @@ public class Tone {
                 AudioTrack.MODE_STATIC);
         audioTrack.write(generatedSnd, 0, generatedSnd.length);
         audioTrack.play();
+        
+        int x = 0;
+        // Montior playback to find when done
+        do {
+        	if (audioTrack != null)
+        		x = audioTrack.getPlaybackHeadPosition();
+        	else
+        		x = numSamples;
+        }
+        while (x<numSamples);
+
+        // Track play done. Release track.
+        if (audioTrack != null) audioTrack.release();
+        
+     
     }
     
     public static void getTone(float x){
